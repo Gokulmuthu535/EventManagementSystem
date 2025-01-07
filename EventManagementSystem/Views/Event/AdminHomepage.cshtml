@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success text-center">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+<main>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                <!-- Card 1: Manage Events -->
+                <div class="col">
+                    <div class="card shadow-sm border-primary">
+                        <img class="card-img-top rounded-top" src="~/images/events.png" alt="Manage Events">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-primary">Manage Events</h5>
+                            <p class="card-text">Admin can create, edit, view, and delete the events.</p>
+                            <a class="btn btn-primary btn-sm" asp-controller="Event" asp-action="ListEvents">Manage Events</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Users Registered -->
+                <div class="col">
+                    <div class="card shadow-sm border-success">
+                        <img class="card-img-top rounded-top" src="~/images/User Reg.png" alt="Users Registered">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-success">Users Registered</h5>
+                            <p class="card-text">Admin can view the list of users registered.</p>
+                            <a class="btn btn-success btn-sm" asp-controller="User" asp-action="GetAllUsers">View Users</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3: New Bookings -->
+                <div class="col">
+                    <div class="card shadow-sm border-warning">
+                        <img class="card-img-top rounded-top" src="~/images/New UserBook.png" alt="New Bookings">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-warning">New Bookings</h5>
+                            <p class="card-text">Admin can monitor and manage new bookings.</p>
+                            <a class="btn btn-warning btn-sm" asp-controller="Booking" asp-action="GetAllBookings">View Bookings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

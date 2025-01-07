@@ -1,0 +1,139 @@
+﻿@model IEnumerable<EventManagementSystem.Models.Event>
+
+@{
+	ViewData["Title"] = "UserHomepage";
+	Layout = "~/Views/Shared/Userlayout.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+	<div class="alert alert-success text-center">
+		@ViewBag.SuccessMessage
+	</div>
+}
+@if (TempData["WelcomeMessage"] != null)
+{
+	<div class="alert alert-success text-center">
+		@TempData["WelcomeMessage"]
+	</div>
+
+}
+
+<h2>Welcome to your homepage, @Context.Session.GetString("Username")!</h2>
+<style>
+	.card-equal-height {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.card-body {
+		flex-grow: 1;
+	}
+
+	.card {
+		max-width: 100%;
+		height: 100%;
+	}
+
+	.col {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	img.card-img-top {
+		object-fit: cover;
+		max-height: 200px;
+		width: 100%;
+	}
+
+	.card img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+
+</style>
+
+<main>
+	<section class="events">
+		<h2>Events we provide</h2>
+		<div class="album py-5 bg-body-tertiary">
+			<div class="container">
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					@foreach (var eve in Model)
+					{
+						if (eve.EventType == "Others")
+						{
+							<div class="col">
+								<div class="card shadow-sm">
+									<img class="bd-placeholder-img card-img-top" src="@eve.ImageURL" alt="Event Image">
+									<div class="card-body">
+										<h3 class="card-text">@eve.Name</h3>
+										<p>Location: @eve.Location</p>
+										<div class="btn-group">
+											<!-- Replace with actual controller and action -->
+											<a type="button" class="btn btn-sm btn-outline-secondary"
+											   asp-controller="Home" asp-action="ContactUs" asp-route-id="#">Contact Us</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="events">
+		<h2>Upcoming concerts</h2>
+		<div class="album py-5 bg-body-tertiary">
+			<div class="container">
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					@foreach (var eve in Model)
+					{
+						if (eve.EventType != "Others")
+						{
+							<div class="col">
+								<div class="card shadow-sm">
+									<img class="bd-placeholder-img card-img-top" src="@eve.ImageURL">
+									<div class="card-body">
+										<h3 class="card-text">@eve.Name</h3>
+										<p>Location: @eve.Location</p>
+										<p>Date: @eve.Date</p>
+										<div class="btn-group">
+											<a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Booking" asp-action="AddBooking" asp-route-eventName="@eve.Name">Book Now</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="events">
+		<h2>My Bookings</h2>
+		<div class="album py-5 bg-body-tertiary">
+			<div class="container">
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						<div class="col">
+								<div class="card shadow-sm">
+									<img class="bd-placeholder-img card-img-top" src="~/images/Booking Img.jpg">
+									<div class="card-body">
+								<p class="card-text">My Bookings</p>
+
+								<div class="btn-group">
+											<a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Booking" asp-action="UserBookings">View Bookings</a>
+										</div>
+									</div>
+								</div>
+							</div>					
+      				</div>
+			</div>
+		</div>
+	</section>
+</main>

@@ -1,0 +1,232 @@
+:root {
+    /* Global Colors */
+    --primary-color: #6ec1e4; /* Light Blue */
+    --secondary-color: #54595f; /* Dark Gray */
+    --accent-color: #61ce70; /* Green */
+    --heading-color: #674188; /* Purple */
+    --background-color: #fff9f2; /* Light Beige */
+    --text-color: #7a7a7a; /* Gray */
+    --button-hover-color: #16bf2e; /* Bright Green */
+    /* Typography */
+    --font-primary: "Roboto", sans-serif;
+    --font-secondary: "Roboto Slab", serif;
+    /* Shadows */
+    --box-shadow-light: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-dark: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    /* Spacing */
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+    /* Border Radius */
+    --border-radius: 8px;
+}
+
+/* Global Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    color: var(--heading-color);
+    margin-bottom: var(--spacing-medium);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* Header */
+/*header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: var(--spacing-medium);
+    box-shadow: var(--box-shadow-dark);
+}*/
+
+header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-large);
+    margin-top: var(--spacing-small);
+}
+
+nav a {
+    color:saddlebrown;
+    font-weight: bold;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/*nav a:hover {
+    color:none;
+}*/
+
+nav li a{
+   color: brown;
+}
+.navbar-brand {
+    color: brown;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #842029;
+}
+/* Section */
+section {
+    margin: var(--spacing-large) auto;
+    padding: var(--spacing-large);
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+    max-width: 1200px;
+}
+
+section h2 {
+    font-size: 2rem;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: var(--spacing-medium);
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-medium);
+}
+
+form input,
+form textarea {
+    padding: var(--spacing-small);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: var(--box-shadow-light);
+}
+
+form button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-small) var(--spacing-large);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* About Us */
+.about-us {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-large);
+    align-items: center;
+}
+
+.about-us img {
+    width: 50%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+}
+
+.about-us div {
+    flex: 1;
+    text-align: justify;
+}
+
+/* Contact Us */
+.contact-us {
+    text-align: center;
+    padding: var(--spacing-large);
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+}
+
+.contact-us h3 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-medium);
+}
+
+/* Footer */
+footer {
+    margin-top: auto; /* Ensures footer stays at the bottom */
+    text-align: center;
+    padding: var(--spacing-medium);
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+footer a {
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--accent-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-us {
+        flex-direction: column;
+    }
+
+    .about-us img {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: var(--spacing-small);
+    }
+}
+.dropdown-menu .dropdown-item {
+    color: saddlebrown; /* Change dropdown items text color to black */
+}
+
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #f8f9fa; /* Optional: add hover effect */
+        color: saddlebrown; /* Ensure the text remains black on hover */
+    }

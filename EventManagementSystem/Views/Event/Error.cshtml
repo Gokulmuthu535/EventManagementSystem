@@ -1,0 +1,8 @@
+﻿<h1>Error</h1>
+
+<p>Error Message: @ViewBag.ErrorMessage</p>
+
+@if (!string.IsNullOrEmpty(ViewBag.RequestId))
+{
+    <p>Request ID: @ViewBag.RequestId</p>
+}

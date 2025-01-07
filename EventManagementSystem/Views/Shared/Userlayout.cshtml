@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AuraEvents</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-black mb-3">
+            <div class="container-fluid">
+                <img src="~/css/Logoimg1.png" alt="Logo" width="80" height="80" />
+                <a class="navbar-brand" style="color:saddlebrown" asp-controller="Home" asp-action="Home">
+                    Aura Event Management System
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "Aboutus" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Home" asp-action="Aboutus">About us</a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "ContactUs" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contact us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="weddingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Wedding venues
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="weddingDropdown">
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="PhotoGallery">Photo Gallery</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="SignIn">Signout</a>
+                        </li>
+                        @if (HttpContextAccessor?.HttpContext?.Session.GetString("Username") != null)
+                        {
+                            <li class="nav-item">
+                                <span class="navbar-text">
+                                    Welcome, @HttpContextAccessor.HttpContext.Session.GetString("Username")!
+                                </span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/SignIn">Sign In</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2024 - EventManagementSystem - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

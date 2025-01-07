@@ -1,0 +1,111 @@
+﻿@model EventManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success text-center">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+                    <form asp-action="SignUp" method="post">
+                        <!-- FirstName and LastName in parallel -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="FirstName" class="form-label"></label>
+                                    <input asp-for="FirstName" class="form-control" id="FirstName" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="LastName" class="form-label"></label>
+                                    <input asp-for="LastName" class="form-control" id="LastName" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DateOfBirth -->
+                        <div class="form-group mb-3">
+                            <label asp-for="DateOfBirth" class="form-label"></label>
+                            <input asp-for="DateOfBirth" type="date" class="form-control" id="DateOfBirth" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Address" class="form-label"></label>
+                            <textarea asp-for="Address" class="form-control" id="Address"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <!-- EmailAddress -->
+                        <div class="form-group mb-3">
+                            <label asp-for="EmailAddress" class="form-label"></label>
+                            <input asp-for="EmailAddress" class="form-control" id="EmailAddress" />
+                        </div>
+
+                        <!-- Username -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Username" class="form-label"></label>
+                            <input asp-for="Username" class="form-control" id="Username" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+                        <!-- Password and ConfirmPassword in parallel -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="Password" class="form-label"></label>
+                                    <input asp-for="Password" type="password" class="form-control" id="Password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control" id="ConfirmPassword" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                    </form>
+
+                    <p class="text-center mt-3">
+                        Already a member? <a asp-action="SignIn">Sign in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Enable unobtrusive validation
+            $.validator.unobtrusive.parse("form");
+
+            // Real-time validation for inputs as user types
+            $(document).on("input change", "form input, form textarea", function () {
+                $(this).valid(); // Trigger validation for the current input field
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+}

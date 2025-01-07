@@ -1,0 +1,23 @@
+﻿<div class="slideshow-container">
+    @if (ViewData["Page"] == "AboutUs")
+    {
+        <img src="~/css/about_slide1.jpg" alt="About Slide 1" class="slide active-slide">
+        <img src="~/css/about_slide2.jpg" alt="About Slide 2" class="slide">
+        <img src="~/css/about_slide3.jpg" alt="About Slide 3" class="slide">
+    }
+    else if (ViewData["Page"] == "ContactUs")
+    {
+        <img src="~/css/contact_slide1.jpg" alt="Contact Slide 1" class="slide active-slide">
+        <img src="~/css/contact_slide2.jpg" alt="Contact Slide 2" class="slide">
+    }
+    else if (ViewData["Page"] == "SignIn")
+    {
+        <img src="~/css/signin_slide1.jpg" alt="Sign-In Slide 1" class="slide active-slide">
+        <img src="~/css/signin_slide2.jpg" alt="Sign-In Slide 2" class="slide">
+    }
+    else if (ViewData["Page"] == "SignUp")
+    {
+        <img src="~/css/signup_slide1.jpg" alt="Sign-Up Slide 1" class="slide active-slide">
+        <img src="~/css/signup_slide2.jpg" alt="Sign-Up Slide 2" class="slide">
+    }
+</div>

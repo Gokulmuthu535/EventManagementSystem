@@ -1,0 +1,80 @@
+﻿@model EventManagementSystem.Models.Event
+
+@{
+	ViewData["Title"] = "AddEvent";
+	Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<a asp-action="AdminHomePage" class="btn btn-secondary">
+	<i class="fa fa-arrow-left"></i> Back to Admin Page
+</a>
+
+<a asp-action="AddEvent" class="btn btn-primary float-right">
+	<i class="fa fa-plus"></i> Add new event
+</a>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="AddEvent">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Location" class="control-label"></label>
+				<input asp-for="Location" class="form-control" />
+				<span asp-validation-for="Location" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="EventType" class="control-label"></label>
+				<select asp-for="EventType" class="form-control" id="eventTypeDropdown">
+					<option value="">-- Select Event Type --</option>
+					<option value="MusicConcert">Music Concert</option>
+					<option value="ArtExhibition">Art Exhibition</option>
+					<option value="Others">Others</option>
+				</select>
+				<span asp-validation-for="EventType" class="text-danger"></span>
+			</div>
+
+			<div class="form-group" id="dateFieldGroup" style="display: none;">
+				<label asp-for="Date" class="control-label"></label>
+				<input asp-for="Date" class="form-control" />
+				<span asp-validation-for="Date" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ImageURL" class="control-label"></label>
+				<input asp-for="ImageURL" class="form-control" />
+				<span asp-validation-for="ImageURL" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const eventTypeDropdown = document.getElementById("eventTypeDropdown");
+		const dateFieldGroup = document.getElementById("dateFieldGroup");
+
+		eventTypeDropdown.addEventListener("change", function () {
+			if (this.value !== "Others") {
+				dateFieldGroup.style.display = "block";
+			} else {
+				dateFieldGroup.style.display = "none";
+			}
+		});
+	});
+</script>

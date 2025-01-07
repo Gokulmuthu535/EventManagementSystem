@@ -1,0 +1,469 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Aura</title>
+ 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />@* 
+    <link rel="stylesheet" href="~/EventManagementSystem.styles.css" asp-append-version="true" /> *@	
+	<style>
+		/* Basic Styling */
+		html, body {
+			font-family: Arial, sans-serif !important;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			display: block;
+			position: relative;
+		}
+
+		.navbar {
+			margin: 0px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px 20px;
+			background-color: transparent !important
+		}
+
+			.navbar a {
+				color: white;
+				text-decoration: none;
+				padding: 14px 20px;
+				display: inline-block;
+			}
+
+		.navbar-light
+		.navbar-nav
+		.nav-link {
+			color: white;
+		}
+
+			.navbar-light
+			.navbar-nav
+			.nav-link:hover {
+				color: saddlebrown;
+			}
+
+			.navbar-light
+			.navbar-nav
+			.nav-link:focus {
+				color: white;
+			}
+
+		/* Dropdown Container */
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+			.dropdown .dropbtn {
+				background: none;
+				border: none;
+				color: white;
+				font-size: 16px;
+				cursor: pointer;
+				padding: 14px 20px;
+			}
+
+			.dropdown:hover .dropbtn {
+				background-color: #575757;
+			}
+
+		/* Dropdown Content */
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #333;
+			min-width: 200px;
+			z-index: 1;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+			.dropdown-content a {
+				color: white;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+			}
+
+				.dropdown-content a:hover {
+					background-color: #575757;
+				}
+
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+
+		.hero {
+			margin: 0px;
+			width: 100vw; /* Full width of the viewport */
+			height: 100vh; /* Optional: Full height of the viewport for a fullscreen hero */
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		/* Slide images */
+		.slide {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: none;
+			position: absolute;
+			background: linear-gradient(45deg, black, black);
+		}
+
+		.active-slide {
+			display: block;
+		}
+
+		/* Controls for slideshow */
+		.slideshow-controls {
+			position: absolute;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 10;
+		}
+
+			.slideshow-controls button {
+				background: rgba(0, 0, 0, 0.5);
+				color: #fff;
+				border: none;
+				font-size: 2rem;
+				padding: 10px;
+				cursor: pointer;
+			}
+
+				.slideshow-controls button:hover {
+					background: rgba(0, 0, 0, 0.8);
+				}
+
+		/* Indicators */
+		.slideshow-indicators {
+			position: absolute;
+			bottom: 20px;
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			z-index: 10;
+		}
+
+		.indicator {
+			width: 10px;
+			height: 10px;
+			background: rgba(255, 255, 255, 0.5);
+			border-radius: 50%;
+			cursor: pointer;
+		}
+
+		.active-indicator {
+			background: #fff;
+		}
+
+		/* Hero content */
+		.hero h1 {
+			position: absolute;
+			z-index: 10;
+			color: white;
+			font-size: 3rem;
+			text-align: center;
+			margin: 0;
+			top: 30%;
+			transform: translateY(-50%);
+		}
+
+		.hero p {
+			position: absolute;
+			z-index: 10;
+			color: white;
+			font-size: 1.5rem;
+			text-align: center;
+			margin: 0;
+			top: 40%;
+			transform: translateY(-50%);
+		}
+
+		.btn-primaryf{
+			background-color: var(--accent-color);
+			color: white;
+			border: none;
+			padding: var(--spacing-small) var(--spacing-large);
+			border-radius: var(--border-radius);
+			cursor: pointer;
+			font-size: 1rem;
+			transition: background-color 0.3s ease;
+		}
+
+
+
+			.btn-primary:hover {
+				background: #0056b3;
+			}
+
+		/* Event section styling */
+		.events {
+			padding: 50px 10%;
+			text-align: center;
+		}
+
+		.event-cards {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 20px;
+			margin-top: 30px;
+		}
+
+		.event-card {
+			width: 30%;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.event-image {
+			width: 100%;
+			height: 300px;
+			object-fit: cover;
+		}
+
+		.event-details {
+			padding: 20px;
+		}
+
+			.event-details h3 {
+				font-size: 1.5rem;
+			}
+
+			.event-details p {
+				font-size: 1rem;
+				color: #555;
+			}
+
+		.btn-secondary {
+			padding: 10px 15px;
+			background: #28a745;
+			color: white;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background 0.3s ease;
+		}
+
+			.btn-secondary:hover {
+				background: #218838;
+			}
+
+		/* Footer Styling */
+		.footer {
+			background-color: #333;
+			color: white;
+			padding: 40px 20px;
+			text-align: center;
+			font-family: Arial, sans-serif;
+			width: 100%;
+		}
+
+		.footer-container {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.footer-logo img {
+			width: 150px;
+			margin-bottom: 20px;
+		}
+
+		.social-icons {
+			margin: 20px 0;
+		}
+
+		.social-icon {
+			text-decoration: none;
+			color: white;
+			margin: 0 10px;
+			font-size: 1.5rem;
+			transition: color 0.3s ease;
+		}
+
+			.social-icon:hover {
+				color: #ff6347; /* Hover color */
+			}
+
+		.footer-description {
+			font-size: 1rem;
+			margin-top: 20px;
+			line-height: 1.6;
+		}
+
+		.slideshow-container {
+			width: 100%;
+			padding-bottom: 650px;
+			background: black;
+		}
+
+			.slideshow-container::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(to top, black, transparent); /* Black bottom to transparent top */
+				pointer-events: none; /* Ensure clicks pass through the overlay */
+				z-index: 1; /* Overlay sits above the images */
+			}
+	</style>
+</head>
+<body>
+ 	<header class="slideshow-container">
+		<img src="~/css/Mrgslide3Lsp.jpg" alt="Slide 1" class="slide active-slide">
+		<img src="~/css/Mrgslide4lsp.jpg" alt="Slide 2" class="slide">
+		<img src="~/css/ConcertSlide.jpg" alt="Slide 3" class="slide"/>
+		@*  <span class="container">  *@
+		@*  	<h1>Welcome to AURA Event Management</h1>  *@
+		@* 	<p>Explore and book events near you</p>  *@
+		@* 	<button class="btn-primary">Discover Events</button>  *@
+		@* </span>   *@
+		
+
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-black mb-3">
+			<div class="container-fluid">
+				<img src="~/css/Logoimg1.png" alt="Logo" width="80" height="80" />
+				<a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Home">
+					Aura Event Management System
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+						aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<!-- Push items to the right -->
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Aboutus">About us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="SignIn">Sign in</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="SignUp">Sign up</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact us</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="weddingDropdown" role="button"
+							   data-bs-toggle="dropdown" aria-expanded="false">
+								Wedding venues
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="weddingDropdown">
+
+						          <li><a class=" dropdown-item" asp-area="" asp-controller="Home" asp-action="PhotoGallery">Photo Gallery</a></li>
+								@* <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="VideoGallery">Video Gallery</a></li> *@
+							</ul>
+						</li>
+						@* <li class="nav-item dropdown"> *@
+						@* 	<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" *@
+						@* 	   data-bs-toggle="dropdown" aria-expanded="false"> *@
+						@* 		Services *@
+						@* 	</a> *@
+						@* 	<ul class="dropdown-menu" aria-labelledby="servicesDropdown"> *@
+						@* 		<li><a class="dropdown-item" href="#">Corporate Event Management</a></li> *@
+						@* 		<li><a class="dropdown-item" href="#">Wedding Planner</a></li> *@
+						@* 		<li><a class="dropdown-item" href="#">Beach Wedding</a></li> *@
+						@* 		<li><a class="dropdown-item" href="#">Music & Entertainment</a></li> *@
+						@* 		<li><a class="dropdown-item" href="#">Private Parties</a></li> *@
+						@* 	</ul> *@
+						@* </li> *@
+					</ul>
+				
+				</div>
+			</div>
+		</nav>
+
+	</header>
+
+	<div class="container">
+		<div role="main" class="pb-3 main">
+			@RenderBody()
+		</div>
+	</div>
+
+	<footer class="footer">
+		<div class="footer-container">
+			<!-- Logo Section -->
+			<div class="footer-logo">
+				<a href="https://eventsmanagementaura.com">
+					<img src="~/css/Logoimg1.png" alt="Aura Event Management">
+				</a>
+			</div>
+			<head>
+				<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+			</head>
+			@* <h3>Follow us on:</h3> *@
+			<div>
+				<!-- WhatsApp Icon -->
+				<a href="https://wa.me/+916379781354" target="_blank" title="WhatsApp">
+					<i class="fab fa-whatsapp fa-3x"></i>
+				</a>
+
+				<!-- Twitter Icon -->
+				<a href="https://twitter.com/yourusername" target="_blank" title="Twitter">
+					<i class="fab fa-twitter fa-3x"></i>
+				</a>
+
+				<!-- Gmail Icon -->
+				<a href="mailto:contact@eventmanagement.com" target="_blank" title="Gmail">
+					<i class="fab fa-google fa-3x"></i>
+				</a>
+
+				<!-- Instagram Icon -->
+				<a href="https://instagram.com/yourusername" target="_blank" title="Instagram">
+					<i class="fab fa-instagram fa-3x"></i>
+				</a>
+			</div>
+
+			<!-- About Us Section -->
+			<div class="footer-description">
+				<p>Planning a full event has never been easier! Aura® Event Management is an ISO 2024:2025 Certified Event Management Company based in Chennai, India. We offer a wide range of services to make your events stress-free and memorable. From premium corporate events and destination weddings to small-scale birthday parties and private gatherings, we’ve got it covered.</p>
+			</div>
+		</div>
+		&copy; 2024 - EventManagementSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+	</footer>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script>
+		const slides = document.querySelectorAll('.slide');
+		let currentSlide = 0;
+
+		function showSlide(index) {
+			slides[currentSlide].classList.remove('active-slide');
+			slides[index].classList.add('active-slide');
+			currentSlide = index;
+		}
+
+		// Automatically rotate through slides every 5 seconds
+		setInterval(() => {
+			const nextSlide = (currentSlide + 1) % slides.length;
+			showSlide(nextSlide);
+		}, 5000);
+
+	</script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

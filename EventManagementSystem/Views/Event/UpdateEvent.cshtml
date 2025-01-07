@@ -1,0 +1,55 @@
+﻿@model EventManagementSystem.Models.Event
+
+@{
+	ViewData["Title"] = "UpdateEvent";
+	Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<a asp-action="ListEvents" class="btn btn-secondary">
+	<i class="fa fa-arrow-left"></i> Back to List
+</a>
+
+<a asp-action="AddEvent" class="btn btn-primary float-right">
+	<i class="fa fa-plus"></i> Add new event
+</a>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="UpdateEvent">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input asp-for="EventID" type="hidden" />
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Date" class="control-label"></label>
+				<input asp-for="Date" class="form-control" />
+				<span asp-validation-for="Date" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Location" class="control-label"></label>
+				<input asp-for="Location" class="form-control" />
+				<span asp-validation-for="Location" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ImageURL" class="control-label"></label>
+				<input asp-for="ImageURL" class="form-control" />
+				<span asp-validation-for="ImageURL" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Save" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+

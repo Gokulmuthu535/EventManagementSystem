@@ -1,0 +1,98 @@
+﻿@model IEnumerable<EventManagementSystem.Models.Booking>
+
+@{
+    ViewData["Title"] = "UserBookings";
+    Layout = "~/Views/Shared/Userlayout.cshtml";
+}
+
+<h1>User bookings</h1>
+
+@* <p> *@
+@*     <a asp-action="AddBooking">Create New</a> *@
+@* </p> *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfTickets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>Confirmation Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfTickets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+                <td>
+                    @if (item.IsConfirmed)
+                    {
+                        <span class="text-success">Confirmed</span>
+                    }
+                    else
+                    {
+                        <span class="text-warning">Pending</span>
+                    }
+                </td>
+                @* <td> *@
+                @*     @if (!item.IsConfirmed) *@
+                @*     { *@
+                @*         @Html.ActionLink("Edit", "Edit", new { bookingId = item.BookingID }, new { @class = "btn btn-success" }) *@
+                @*     } *@
+                @*     @Html.ActionLink("Cancel Booking", "Delete", new { id = item.BookingID }) *@
+                @* </td> *@
+           
+        </tr>
+}
+    </tbody>
+</table>

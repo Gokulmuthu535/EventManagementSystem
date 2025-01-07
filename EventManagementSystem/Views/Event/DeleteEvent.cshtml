@@ -1,0 +1,66 @@
+﻿@model EventManagementSystem.Models.Event
+
+@{
+	ViewData["Title"] = "DeleteEvent";
+	Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<a asp-action="ListEvents" class="btn btn-secondary">
+	<i class="fa fa-arrow-left"></i> Back to List
+</a>
+
+<div>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.EventID)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.EventID)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Date)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Location)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Location)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.ImageURL)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.ImageURL)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.EventType)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.EventType)
+		</dd>
+	</dl>
+</div>
+<div>
+	<form asp-action="DeleteConfirmed" method="post">
+		<input type="hidden" name="id" value="@Model.EventID" />
+		<input type="submit" value="Delete Event" class="btn btn-danger" />
+	</form>
+</div>
